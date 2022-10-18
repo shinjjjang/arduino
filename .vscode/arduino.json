@@ -1,5 +1,0 @@
-{
-    "sketch": "serialRead\\serialRead.ino",
-    "board": "arduino:avr:uno",
-    "port": "COM3"
-}
