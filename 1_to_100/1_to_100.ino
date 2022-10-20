@@ -1,15 +1,46 @@
+int countPlus = 1;
+int countMinus = 100;
+
 void setup(){
+    pinMode(LED_BUILTIN, OUTPUT);
     Serial.begin(9600);
 }
 
 void loop(){
-    int count = 1;
-    for(count; count < 100; count++){
-        Serial.println(count);
-        delay(1000);
+    numCountPlus();
+}
+
+void numCountPlus(){
+    
+    if(countPlus > 0 && countPlus < 100){
+        Serial.println(countPlus);
+        countPlus++;
+        if(Serial.available()){
+        String onoff = Serial.readString();
+    
+        if(onoff == "1"){
+            digitalWrite(LED_BUILTIN, HIGH);
+        }
+        if(onoff == "0"){
+            digitalWrite(LED_BUILTIN, LOW);
+        }
     }
-    for(count; count > 1; count--){
-        Serial.println(count);
-        delay(1000);
+        delay(100);
+    }
+    if(countPlus == 100){
+        numRcountMinus();
+    }
+    if(countMinus == 1){
+        countPlus = 1;
+        countMinus = 100;
+    }
+}
+
+void numRcountMinus(){
+    if(countPlus == 100 && countMinus > 1)
+    {
+        Serial.println(countMinus);
+        countMinus--;
+        delay(100);
     }
 }
